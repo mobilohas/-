@@ -8,6 +8,8 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/bell-practice" />
+            <option value="$PROJECT_DIR$/sudong-practice" />
           </set>
         </option>
       </GradleProjectSettings>
