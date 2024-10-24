@@ -1,18 +1,31 @@
 package org.mobilohas.bell.account.domain;
 
 import java.time.LocalDateTime;
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
 import lombok.Value;
 
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
 public class Account {
 
-  private AccountId id;
+  @Getter private AccountId id;
   private Money baselineBalance;
-  private ActivityWindow activityWindow;
+  @Getter private ActivityWindow activityWindow;
 
   public Money calculateBalance() {
     return Money.add(
         this.baselineBalance,
         this.activityWindow.calculateBalance(this.id));
+  }
+
+  public static Account withoutId(Money baselineBalance, ActivityWindow activityWindow) {
+    return new Account(null, baselineBalance, activityWindow);
+  }
+
+  public static Account withId(
+      AccountId accountId, Money baselineBalance, ActivityWindow activityWindow) {
+    return new Account(accountId, baselineBalance, activityWindow);
   }
 
   public boolean withdraw(Money money, AccountId targetAccountId) {
