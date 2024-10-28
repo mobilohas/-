@@ -1,6 +1,7 @@
 package org.mobilohas.bell.account.domain;
 
 import java.time.LocalDateTime;
+import java.util.Optional;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -26,6 +27,10 @@ public class Account {
   public static Account withId(
       AccountId accountId, Money baselineBalance, ActivityWindow activityWindow) {
     return new Account(accountId, baselineBalance, activityWindow);
+  }
+
+  public Optional<AccountId> getId(){
+    return Optional.ofNullable(this.id);
   }
 
   public boolean withdraw(Money money, AccountId targetAccountId) {

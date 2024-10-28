@@ -1,4 +1,4 @@
-package org.mobilohas.bell.account.application;
+package org.mobilohas.bell.account.application.service;
 
 import java.time.LocalDateTime;
 import lombok.RequiredArgsConstructor;

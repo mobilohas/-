@@ -1,14 +1,15 @@
 package org.mobilohas.bell.account.application.port.in;
 
-import static java.util.Objects.requireNonNull;
-
-import lombok.Getter;
+import lombok.EqualsAndHashCode;
 import lombok.NonNull;
+import lombok.Value;
 import org.mobilohas.bell.account.domain.Account.AccountId;
 import org.mobilohas.bell.account.domain.Money;
 import org.mobilohas.bell.common.SelfValidating;
 
-@Getter
+
+@Value
+@EqualsAndHashCode(callSuper = false)
 public class SendMoneyCommand extends SelfValidating<SendMoneyCommand> {
 
   @NonNull
