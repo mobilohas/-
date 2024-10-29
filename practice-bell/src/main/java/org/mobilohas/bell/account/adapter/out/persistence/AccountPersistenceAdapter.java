@@ -3,7 +3,6 @@ package org.mobilohas.bell.account.adapter.out.persistence;
 import jakarta.persistence.EntityNotFoundException;
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import org.mobilohas.bell.account.application.port.out.LoadAccountPort;
 import org.mobilohas.bell.account.application.port.out.UpdateAccountStatePort;
@@ -14,15 +13,15 @@ import org.springframework.stereotype.Component;
 
 @RequiredArgsConstructor
 @Component
-public class AccountPersistenceAdapter implements LoadAccountPort, UpdateAccountStatePort {
+class AccountPersistenceAdapter implements LoadAccountPort, UpdateAccountStatePort {
 
-  private final AccountRepository accountRepository;
+  private final SpringDataAccountRepository springDataAccountRepository;
   private final ActivityRepository activityRepository;
   private final AccountMapper accountMapper;
 
   @Override
   public Account loadAccount(final AccountId accountId, final LocalDateTime baselineDate) {
-    AccountJpaEntity account = accountRepository.findById(accountId.getValue())
+    AccountJpaEntity account = springDataAccountRepository.findById(accountId.getValue())
         .orElseThrow(EntityNotFoundException::new);
 
     List<ActivityJpaEntity> activities = activityRepository.findByOwnerSince(

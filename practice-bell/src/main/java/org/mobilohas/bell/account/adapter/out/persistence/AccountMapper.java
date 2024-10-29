@@ -11,7 +11,7 @@ import org.mobilohas.bell.account.domain.Money;
 import org.springframework.stereotype.Component;
 
 @Component
-public class AccountMapper {
+class AccountMapper {
 
   Account mapToDomainEntity(
       AccountJpaEntity account,
